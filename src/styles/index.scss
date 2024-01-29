@@ -7,14 +7,14 @@
   box-sizing: border-box;
 }
 
-body {
-  position: relative;
-  font-family: 'Montserrat', sans-serif;
-  background: var(#{--body-background-default});
-}
+// body {
+//   position: relative;
+//   font-family: 'Montserrat', sans-serif;
+//   background: var(#{--body-background-default});
+// }
 
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding-top: 20px;
+  padding: 20px;
 }
