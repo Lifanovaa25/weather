@@ -1,4 +1,4 @@
-import Select from "react-select";
+
 import {ThisDayItem} from "./ThisDayItem";
 import { GlobalSvgSelector } from "../../assets/icons/global/GlobalSvgSelector";
 import s from "./ThisDayInfo.module.scss";
@@ -42,7 +42,7 @@ const ThisDayInfo = (props: Item) => {
             <ThisDayItem key={item.icon_id} item={item} />
           ))}
         </div>
-        <img src={cloud} alt="облако" />
+        <img src={cloud} className={s.cloud__img} alt="облако" />
       </div>
     </>
   );

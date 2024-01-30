@@ -5,6 +5,7 @@ import Form from "./components/Form/Form";
 import { getPosts } from "./api/requests";
 import ThisDay from "./components/ThisDay/ThisDay";
 import ThisDayInfo from "./components/ThisDayInfo/ThisDayInfo";
+import { Days } from "./components/Days/Days";
 
 function App() {
   // useEffect(() => {
@@ -15,9 +16,12 @@ function App() {
     <>
       <div className="container">
         <Header />
-        <ThisDay/>
-        <ThisDayInfo/>
+        <div className="day_wrapper">
+          <ThisDay />
+          <ThisDayInfo icon_id={""} name={""} value={""} />
+        </div>
         {/* <Form /> */}
+        <Days/>
       </div>
     </>
   );

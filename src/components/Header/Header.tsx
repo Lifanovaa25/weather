@@ -1,24 +1,61 @@
+import React, { useEffect, useState } from "react";
 import Select from "react-select";
 import { GlobalSvgSelector } from "../../assets/icons/global/GlobalSvgSelector";
+import { Theme } from "../../context/ThemeContext";
+import { useTheme } from "../../hooks/useTheme";
 import s from "./Header.module.scss";
 
-const Header = () => {
+interface Props {}
+
+export const Header = (props: Props) => {
+  const theme = useTheme();
+  // const [theme, setTheme] = useState("dark");
   const options = [
     { value: "city-2", label: "Москва" },
     { value: "city-1", label: "Санкт-Петербург" },
     { value: "city-3", label: "Новгород" },
   ];
+
+  
   const colourStyles = {
     control: (styles: any) => ({
       ...styles,
-      backgroundColor: " #4793FF33    ",
+      backgroundColor:
+        theme.theme === Theme.DARK ? "#4F4F4F" : "rgba(71, 147, 255, 0.2)",
       width: "194px",
       height: "37px",
       border: "none",
       borderRadius: "10px",
-      zInsex: 100,
+      zIndex: 100,
+    }),
+    singleValue: (styles: any) => ({
+      ...styles,
+      color: theme.theme === Theme.DARK ? "#fff" : "#000",
     }),
   };
+  
+  function changeTheme() {
+    theme.changeTheme(theme.theme === Theme.LIGHT ? Theme.DARK : Theme.LIGHT);
+    // setTheme(theme === "light" ? "dark" : "light");
+  }
+useEffect(()=>{
+  const root = document.querySelector(':root') as HTMLElement
+  const components = [
+    'body-background',
+    'components-background',
+    'card-background',
+    'card-shadow',
+    'text-color',
+  ];
+
+  components.forEach(component => {
+    root.style.setProperty(
+      `--${component}-default`,
+      `var(--${component}-${theme})`
+    );
+    // alert(component)
+  });
+})
   return (
     <>
       <header className={s.header}>
@@ -29,10 +66,14 @@ const Header = () => {
           <div className={s.title}>Прогноз погоды</div>
         </div>
         <div className={s.wrapper}>
-          <div className={s.change_theme}>
+          <div className={s.change_theme} onClick={changeTheme}>
             <GlobalSvgSelector id="change-theme" />
           </div>
-          <Select defaultValue={options[0]} styles={colourStyles} options={options} />
+          <Select
+            defaultValue={options[0]}
+            styles={colourStyles}
+            options={options}
+          />
         </div>
       </header>
     </>
