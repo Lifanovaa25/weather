@@ -4,6 +4,8 @@ import { GlobalSvgSelector } from "../../assets/icons/global/GlobalSvgSelector";
 import { Theme } from "../../context/ThemeContext";
 import { useTheme } from "../../hooks/useTheme";
 import s from "./Header.module.scss";
+import { WeatherService } from "../../services/WeatherService";
+import { fetchCurrentWeather } from "../../store/thunks/fetchCurrentWeather";
 
 interface Props {}
 
@@ -11,12 +13,11 @@ export const Header = (props: Props) => {
   const theme = useTheme();
   // const [theme, setTheme] = useState("dark");
   const options = [
-    { value: "city-2", label: "Москва" },
-    { value: "city-1", label: "Санкт-Петербург" },
-    { value: "city-3", label: "Новгород" },
+    { value: "Москва", label: "Москва" },
+    { value: "Санкт-Петербург", label: "Санкт-Петербург" },
+    { value: "Новгород", label: "Новгород" },
   ];
 
-  
   const colourStyles = {
     control: (styles: any) => ({
       ...styles,
@@ -33,29 +34,30 @@ export const Header = (props: Props) => {
       color: theme.theme === Theme.DARK ? "#fff" : "#000",
     }),
   };
-  
+
   function changeTheme() {
     theme.changeTheme(theme.theme === Theme.LIGHT ? Theme.DARK : Theme.LIGHT);
     // setTheme(theme === "light" ? "dark" : "light");
   }
-useEffect(()=>{
-  const root = document.querySelector(':root') as HTMLElement
-  const components = [
-    'body-background',
-    'components-background',
-    'card-background',
-    'card-shadow',
-    'text-color',
-  ];
+ 
+  useEffect(() => {
+    const root = document.querySelector(":root") as HTMLElement;
+    const components = [
+      "body-background",
+      "components-background",
+      "card-background",
+      "card-shadow",
+      "text-color",
+    ];
 
-  components.forEach(component => {
-    root.style.setProperty(
-      `--${component}-default`,
-      `var(--${component}-${theme})`
-    );
-    // alert(component)
+    components.forEach((component) => {
+      root.style.setProperty(
+        `--${component}-default`,
+        `var(--${component}-${theme})`
+      );
+      // alert(component)
+    });
   });
-})
   return (
     <>
       <header className={s.header}>
@@ -73,6 +75,10 @@ useEffect(()=>{
             defaultValue={options[0]}
             styles={colourStyles}
             options={options}
+            onChange={(selectedOption) => {
+              WeatherService.getCurrentWeather(selectedOption?.value);
+              fetchCurrentWeather(selectedOption?.value);
+            }}
           />
         </div>
       </header>

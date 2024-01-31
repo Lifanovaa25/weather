@@ -44,7 +44,7 @@ export const Days = (props: Props) => {
     {
       day: 'Чт',
       day_info: '28 авг',
-      icon_id: 'mainly_cloudy',
+      icon_id: 'Clouds',
       temp_day: '+18',
       temp_night: '+15',
       info: 'Облачно',
