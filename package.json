@@ -14,6 +14,7 @@
     "@types/node": "^20.11.13",
     "@types/react-redux": "^7.1.33",
     "axios": "^1.6.7",
+    "date-time-convertor": "^1.0.2",
     "normalize.css": "^8.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

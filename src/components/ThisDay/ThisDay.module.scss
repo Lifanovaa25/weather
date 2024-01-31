@@ -48,5 +48,8 @@
     text-align: left;
     color: $base-color;
     margin-bottom: 15px;
+    span {
+      margin-left: 15px;
+    }
   }
 }

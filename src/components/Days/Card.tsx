@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { GlobalSvgSelector } from '../../assets/icons/global/GlobalSvgSelector';
 import { Day } from './Days';
 

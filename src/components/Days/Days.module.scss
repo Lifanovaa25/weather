@@ -100,3 +100,17 @@
 .tabs_wrapper {
   display: flex;
 }
+
+@media (max-width:620px) {
+  .days {
+    align-items:center;
+    justify-content:center;
+    flex-wrap: wrap;
+    gap: 20px;
+    >div {
+      width:60%;
+      
+    }
+
+  }
+}

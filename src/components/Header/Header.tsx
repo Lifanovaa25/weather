@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect } from "react";
 import Select from "react-select";
 import { GlobalSvgSelector } from "../../assets/icons/global/GlobalSvgSelector";
 import { Theme } from "../../context/ThemeContext";
@@ -7,9 +7,7 @@ import s from "./Header.module.scss";
 import { WeatherService } from "../../services/WeatherService";
 import { fetchCurrentWeather } from "../../store/thunks/fetchCurrentWeather";
 
-interface Props {}
-
-export const Header = (props: Props) => {
+export const Header = () => {
   const theme = useTheme();
   // const [theme, setTheme] = useState("dark");
   const options = [
@@ -39,7 +37,7 @@ export const Header = (props: Props) => {
     theme.changeTheme(theme.theme === Theme.LIGHT ? Theme.DARK : Theme.LIGHT);
     // setTheme(theme === "light" ? "dark" : "light");
   }
- 
+
   useEffect(() => {
     const root = document.querySelector(":root") as HTMLElement;
     const components = [

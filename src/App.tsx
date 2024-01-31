@@ -1,8 +1,6 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import "./index.scss";
 import Header from "./components/Header/Header";
-import Form from "./components/Form/Form";
-import { getPosts } from "./api/requests";
 import ThisDay from "./components/ThisDay/ThisDay";
 import ThisDayInfo from "./components/ThisDayInfo/ThisDayInfo";
 import { Days } from "./components/Days/Days";
@@ -27,13 +25,12 @@ function App() {
   const temp = Math.floor(weather.main?.temp);
   const feels_like = Math.floor(weather.main?.feels_like);
   const pressure = Math.floor(weather.main?.pressure);
-  const description = weather.weather?.[0].description;
-  console.log(weather)
-  const speed =Math.floor(weather.wind?.speed);
-  const deg =  Math.floor(weather.wind?.deg);
 
-  const date = weather.dt;
-  const cityName = weather.name
+  const description = weather.weather?.[0].description;
+
+  const speed = Math.floor(weather.wind?.speed);
+  const deg = Math.floor(weather.wind?.deg);
+
   return (
     <>
       <div className="container">
@@ -47,7 +44,10 @@ function App() {
             pressure={pressure}
             temp={temp}
             feels_like={feels_like}
-             value={""} icon_id={""} iname={""}          />
+            value={""}
+            icon_id={""}
+            iname={""}
+          />
         </div>
         {/* <Form /> */}
         <Days />

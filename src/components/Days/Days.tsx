@@ -1,10 +1,10 @@
-import React from 'react';
+
 import { Card } from './Card';
 
 import s from './Days.module.scss';
 import { Tabs } from './Tabs';
 
-interface Props {}
+
 
 export interface Day {
   day: string;
@@ -15,7 +15,7 @@ export interface Day {
   info: string;
 }
 
-export const Days = (props: Props) => {
+export const Days = () => {
   const days: Day[] = [
     {
       day: 'Сегодня',
